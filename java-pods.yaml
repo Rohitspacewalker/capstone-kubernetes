@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: java-app-pods
+        labels:
+                app: java
+spec:
+   replicas: 2     
+   selector:      # tells the controller which pods to watch/belong to
+    matchLabels:
+     app: java
+   template:
+     metadata:
+       name: java-pod
+       labels:
+         app: java
+     spec:
+      containers:
+        - name: c00
+          image: httpd
+          ports:
+          - containerPort: 80
+
